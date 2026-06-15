@@ -2,6 +2,16 @@
 
 import Foundation
 
+enum Command: String{
+	case add
+	case list
+	case clear
+	case remove
+	case complete
+	case help
+	
+}
+
 struct TaskRunner{
 	var tasksModel = TasksModel()
 
@@ -9,29 +19,30 @@ struct TaskRunner{
 	mutating func run(){
 		
 
-		let command = CommandLine.arguments[1].lowercased()
+		guard let command: Command = Command(rawValue: CommandLine.arguments[1].lowercased()) else {
+			print("TaskManager: error - Invalid command given")
+			return
+		}
 
 		switch command{
-			case "add":
+			case .add:
 			addItem()
 			
-			case "list":
+			case .list:
 			listItems()
 			
-			case "clear":
+			case .clear:
 			clearItems()
 			
-			case "remove":
+			case .remove:
 			removeItems()
 			
-			case "complete":
+			case .complete:
 			completeItem()
 			
-			case "help":
+			case .help:
 			help()
-			
-			default:
-			print("TaskManager: error - No command given")
+		
 		}
 	}
 }
