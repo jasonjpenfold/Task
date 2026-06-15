@@ -25,11 +25,13 @@ struct TaskRunner{
 			removeItems()
 			
 			case "complete":
-			print("Completing....")
+			completeItem()
+			
 			case "help":
-			print("Help is on the way dear!")
+			help()
+			
 			default:
-			print("Task Manager: error - No command given")
+			print("TaskManager: error - No command given")
 		}
 	}
 }

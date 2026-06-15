@@ -1,4 +1,4 @@
-	// jjp 14.6.26
+		// jjp 14.6.26
 // tasksModel - tasks store and business logic
 
 import Foundation
@@ -20,7 +20,7 @@ struct TasksModel: Codable{
 	}
 
 	func checkTaskIndex(taskIndex: Int)->Bool{
-		return taskIndex > 0 && taskIndex < self.tasks.endIndex
+		return taskIndex >= 0 && taskIndex < self.tasks.endIndex
 	}
 
 	mutating func removeTask(taskIndex: Int)->Bool{
@@ -32,7 +32,7 @@ struct TasksModel: Codable{
 	}
 	func listTasks()->String{
 
-		return self.tasks.enumerated().map{index, element in "\(index + 1). \(element.name)"}.joined(separator:"\n")
+		return self.tasks.enumerated().map{index, element in "\(index + 1). [\(element.completed ? "x" : " ")] \(element.name)"}.joined(separator:"\n")
 	}
 	func saveTasks(){
 		do{
@@ -43,5 +43,12 @@ struct TasksModel: Codable{
 	}
 	mutating func clearTasks(){
 		self.tasks.removeAll()
+	}
+	mutating func completeTask(taskIndex: Int)->Bool{
+		if !checkTaskIndex(taskIndex: taskIndex){
+			return false
+		}
+		self.tasks[taskIndex].completed = true
+		return true
 	}
 }
