@@ -8,10 +8,14 @@ struct JsonService{
 
 	static func importTasks<T: Codable>(filename: String)throws->[T]{
 		let fileManager = FileManager.default
-		let currentDirPath = fileManager.currentDirectoryPath
-		let fileURL = URL(fileURLWithPath: currentDirPath).appendingPathComponent(filename)
+		let homeDirURL = fileManager.homeDirectoryForCurrentUser
+		let directory = homeDirURL.appendingPathComponent(".taskcli")
+		
+		
+		let fileURL = directory.appendingPathComponent(filename)
 
 		if !fileManager.fileExists(atPath: fileURL.path){
+			try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
 			return []
 		}
 		let jsonDecoder = JSONDecoder()
@@ -23,8 +27,10 @@ struct JsonService{
 
 	static func exportTasks<T: Codable>(filename: String, data: [T])throws{
 		let fileManager = FileManager.default
-		let currentDirPath = fileManager.currentDirectoryPath
-		let fileURL = URL(fileURLWithPath: currentDirPath).appendingPathComponent(filename)
+		
+		let homeDirURL = fileManager.homeDirectoryForCurrentUser                
+		let directory = homeDirURL.appendingPathComponent(".taskcli")                                                
+		let fileURL = directory.appendingPathComponent(filename)
 
 		let jsonEncoder = JSONEncoder()
 		
