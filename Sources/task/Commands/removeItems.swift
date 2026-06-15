@@ -3,6 +3,10 @@
 
 extension TaskRunner{
 	mutating func removeItems(){
+	if CommandLine.arguments.count < 3{
+		print("Error: Need task number.")
+		return
+	}
 		guard let input = Int(CommandLine.arguments[2])  else{
 			
 			print("Error: Invalid task number")
