@@ -13,6 +13,7 @@ extension TaskRunner{
         let edited = self.tasksModel.editTask(taskIndex: taskIndex, newName: newName)
         if !edited {
             print("Unable to edit task.")
+            return
         }else{
             self.tasksModel.saveTasks()
             print("Task edited.")

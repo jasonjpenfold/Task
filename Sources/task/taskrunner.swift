@@ -6,9 +6,11 @@ enum Command: String{
 	case add
 	case edit
 	case list
+	case pending
 	case clear
 	case remove
 	case complete
+	case uncomplete
 	case help
 	
 }
@@ -34,6 +36,9 @@ struct TaskRunner{
 			
 			case .list:
 			listItems()
+
+			case .pending:
+			pendingItems()
 			
 			case .clear:
 			clearItems()
@@ -43,6 +48,9 @@ struct TaskRunner{
 			
 			case .complete:
 			completeItem(commandArgs: commandArgs)
+			
+			case .uncomplete:
+			uncompleteItem(commandArgs: commandArgs)
 			
 			case .help:
 			help()

@@ -30,9 +30,9 @@ struct TasksModel: Codable{
 		self.tasks.remove(at: taskIndex)
 		return true
 	}
-	func listTasks()->String{
+	func pendingTasks()->[TaskItem]{
 
-		return self.tasks.enumerated().map{index, element in "\(index + 1). [\(element.completed ? "x" : " ")] \(element.name)"}.joined(separator:"\n")
+		return self.tasks.filter{!$0.completed}
 	}
 	func saveTasks(){
 		do{
@@ -56,6 +56,13 @@ struct TasksModel: Codable{
 			return false
 		}
 		self.tasks[taskIndex].name = newName
+		return true
+	}
+	mutating func uncompleteTask(taskIndex: Int)->Bool{
+		if !checkTaskIndex(taskIndex: taskIndex){
+			return false
+		}
+		self.tasks[taskIndex].completed = false
 		return true
 	}
 }

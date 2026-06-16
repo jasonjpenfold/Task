@@ -16,7 +16,7 @@ extension TaskRunner{
 			print("Unable to complete task!")
 		}else{
 			print("Task completed.")
-		}
-		self.tasksModel.saveTasks()
+			self.tasksModel.saveTasks()
+			}
 	}
 }
