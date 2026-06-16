@@ -87,4 +87,17 @@ struct TasksModel: Codable{
 	func searchTasks(searchTerm: String)->[TaskItem]{
 		return self.tasks.filter{ $0.name.localizedCaseInsensitiveContains(searchTerm) }
 	}
+
+	func exportTasks()->Bool{
+		let exportFilename = "tasks_export.txt"
+		let tasksAsText = self.tasks.enumerated().map{ index,element in "Task \(index + 1): \(element.name) - \(element.completed ? "[x]" : "[ ]") - created on \(element.createdOn.formatted(date: .long, time: .shortened))" }
+
+		do{
+			try TextService.exportTasksAsText(filename: exportFilename, data: tasksAsText)
+			return true
+		}catch{
+			print("Export error: \(error)")
+			return false
+		}
+	}
 }

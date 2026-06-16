@@ -16,6 +16,7 @@ extension TaskRunner{
 		print("task sort <sort type> (sort type: a, z, createdOn, completed)")
 		print("task search <search term>")
 		print("task clear")
+		print("task export")
 		print("task help")
 		print()
 	}

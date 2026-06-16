@@ -38,3 +38,16 @@ struct JsonService{
 		try jsonData.write(to: fileURL)
 	}
 }
+
+struct TextService{
+	static func exportTasksAsText(filename: String, data: [String])throws{
+		let fileManager = FileManager.default
+		
+		let homeDirURL = fileManager.homeDirectoryForCurrentUser                
+		                                                
+		let fileURL = homeDirURL.appendingPathComponent(filename)
+
+		let textData = data.joined(separator: "\n")
+		try textData.write(to: fileURL, atomically: true, encoding: .utf8)
+	}
+}

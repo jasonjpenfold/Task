@@ -13,6 +13,7 @@ enum Command: String{
 	case uncomplete
 	case sort
 	case search
+	case export
 	case help
 	
 }
@@ -59,6 +60,9 @@ struct TaskRunner{
 
 			case .search:
 			searchItem(commandArgs: commandArgs)
+
+			case .export:
+			exportItems(commandArgs: commandArgs)
 
 			case .help:
 			help()
