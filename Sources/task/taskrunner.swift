@@ -22,7 +22,7 @@ struct TaskRunner{
 	mutating func run(commandArgs: [String]){
 		
 
-		guard let command: Command = Command(rawValue: commandArgs[0]) else {
+		guard let command: Command = Command(rawValue: commandArgs[0].lowercased()) else {
 			print("TaskManager: error - Invalid command given")
 			return
 		}
@@ -51,7 +51,7 @@ struct TaskRunner{
 			
 			case .uncomplete:
 			uncompleteItem(commandArgs: commandArgs)
-			
+
 			case .help:
 			help()
 		

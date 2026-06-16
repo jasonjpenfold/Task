@@ -5,7 +5,7 @@ import Foundation
 @main
 struct task {
     static func main() {
-        let commandLineArgs: [String] = Array(CommandLine.arguments.map{ $0.lowercased() }.dropFirst())
+        let commandLineArgs: [String] = Array(CommandLine.arguments.dropFirst())
         if commandLineArgs.isEmpty{
         	print("Task Manager: error - command not specified")
         }else{
