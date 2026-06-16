@@ -11,6 +11,7 @@ enum Command: String{
 	case remove
 	case complete
 	case uncomplete
+	case sort
 	case help
 	
 }
@@ -51,6 +52,9 @@ struct TaskRunner{
 			
 			case .uncomplete:
 			uncompleteItem(commandArgs: commandArgs)
+
+			case .sort:
+			sortItem(commandArgs: commandArgs)
 
 			case .help:
 			help()

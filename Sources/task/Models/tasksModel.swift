@@ -65,4 +65,23 @@ struct TasksModel: Codable{
 		self.tasks[taskIndex].completed = false
 		return true
 	}
+	mutating func sortTasks(sortType: String)->Bool{
+		switch sortType{
+			case "a":
+				self.tasks.sort{ $0.name.lowercased() < $1.name.lowercased() }
+				return true
+			case "z":
+				self.tasks.sort{ $0.name.lowercased() > $1.name.lowercased() }
+				return true
+			case "created":
+				self.tasks.sort{ $0.createdOn < $1.createdOn }
+				return true
+			case "completed":
+				self.tasks.sort{ $0.completed && !$1.completed }
+				return true
+			default:
+				return false
+			
+		}
+	}
 }
