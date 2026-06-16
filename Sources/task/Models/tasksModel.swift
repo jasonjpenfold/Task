@@ -84,4 +84,7 @@ struct TasksModel: Codable{
 			
 		}
 	}
+	func searchTasks(searchTerm: String)->[TaskItem]{
+		return self.tasks.filter{ $0.name.localizedCaseInsensitiveContains(searchTerm) }
+	}
 }

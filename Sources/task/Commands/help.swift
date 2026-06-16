@@ -13,6 +13,8 @@ extension TaskRunner{
 		print("task remove <task number>")
 		print("task complete <task number>")
 		print("task uncomplete <task number>")
+		print("task sort <sort type> (sort type: a, z, createdOn, completed)")
+		print("task search <search term>")
 		print("task clear")
 		print("task help")
 		print()
