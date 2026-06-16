@@ -4,6 +4,7 @@ import Foundation
 
 enum Command: String{
 	case add
+	case edit
 	case list
 	case clear
 	case remove
@@ -27,6 +28,9 @@ struct TaskRunner{
 		switch command{
 			case .add:
 			addItem(commandArgs: commandArgs)
+
+			case .edit:
+			editItem(commandArgs: commandArgs)
 			
 			case .list:
 			listItems()

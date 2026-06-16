@@ -51,4 +51,11 @@ struct TasksModel: Codable{
 		self.tasks[taskIndex].completed = true
 		return true
 	}
+	mutating func editTask(taskIndex: Int, newName: String)->Bool{
+		if !checkTaskIndex(taskIndex: taskIndex){
+			return false
+		}
+		self.tasks[taskIndex].name = newName
+		return true
+	}
 }
