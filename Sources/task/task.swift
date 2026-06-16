@@ -5,11 +5,12 @@ import Foundation
 @main
 struct task {
     static func main() {
-        if CommandLine.arguments.count < 2{
+        let commandLineArgs: [String] = Array(CommandLine.arguments.map{ $0.lowercased() }.dropFirst())
+        if commandLineArgs.isEmpty{
         	print("Task Manager: error - command not specified")
         }else{
         var taskRunner = TaskRunner()
-        	taskRunner.run()
+        	taskRunner.run(commandArgs: commandLineArgs)
         	
         }
     }

@@ -2,12 +2,12 @@
 // remove items 
 
 extension TaskRunner{
-	mutating func removeItems(){
-	if CommandLine.arguments.count < 3{
+	mutating func removeItems(commandArgs: [String]){
+	if commandArgs.count < 2{
 		print("Error: Need task number.")
 		return
 	}
-		guard let input = Int(CommandLine.arguments[2])  else{
+		guard let input = Int(commandArgs[1])  else{
 			
 			print("Error: Invalid task number")
 			return

@@ -16,17 +16,17 @@ struct TaskRunner{
 	var tasksModel = TasksModel()
 
 
-	mutating func run(){
+	mutating func run(commandArgs: [String]){
 		
 
-		guard let command: Command = Command(rawValue: CommandLine.arguments[1].lowercased()) else {
+		guard let command: Command = Command(rawValue: commandArgs[0]) else {
 			print("TaskManager: error - Invalid command given")
 			return
 		}
 
 		switch command{
 			case .add:
-			addItem()
+			addItem(commandArgs: commandArgs)
 			
 			case .list:
 			listItems()
@@ -35,10 +35,10 @@ struct TaskRunner{
 			clearItems()
 			
 			case .remove:
-			removeItems()
+			removeItems(commandArgs: commandArgs)
 			
 			case .complete:
-			completeItem()
+			completeItem(commandArgs: commandArgs)
 			
 			case .help:
 			help()

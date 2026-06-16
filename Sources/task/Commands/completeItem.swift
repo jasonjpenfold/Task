@@ -2,11 +2,11 @@
 // completeItem
 
 extension TaskRunner{
-	mutating func completeItem(){
-		if CommandLine.arguments.count < 3{
+	mutating func completeItem(commandArgs: [String]){
+		if commandArgs.count < 2{
 			print("Error: Unable to complete task.")
 		}
-		guard let input = Int(CommandLine.arguments[2]) else{
+		guard let input = Int(commandArgs[1]) else{
 			print("Error: Task number needed")
 			return
 		}
