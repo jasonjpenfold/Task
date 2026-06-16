@@ -5,12 +5,13 @@ extension TaskRunner{
 	func help(){
 		print("Help is on the way dear!\n")
 		print("TaskManager Commands:")
-		print("add <\"task name\">")
-		print("list")
-		print("remove <task number>")
-		print("complete <task number>")
-		print("clear")
-		print("help")
+		print("Usage:")
+		print("task add \"task name\"")
+		print("task list")
+		print("task remove <task number>")
+		print("task complete <task number>")
+		print("task clear")
+		print("task help")
 		print()
 	}
 }
