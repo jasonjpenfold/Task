@@ -5,10 +5,12 @@ import Foundation
 
 struct TasksModel: Codable{
 	private(set) var tasks:[TaskItem]
+	private(set) var filename: String
 	
-	init(){
+	init(filename: String = "tasks.json"){
+		self.filename = filename
 		do{
-			self.tasks = try JsonService.importTasks(filename: "tasks.json")
+			self.tasks = try JsonService.importTasks(filename: filename)
 		}catch{
 			print("Import error: \(error)")
 			self.tasks = []
@@ -36,7 +38,7 @@ struct TasksModel: Codable{
 	}
 	func saveTasks(){
 		do{
-			try JsonService.exportTasks(filename: "tasks.json", data: self.tasks)
+			try JsonService.exportTasks(filename: self.filename, data: self.tasks)
 		}catch{
 			print("Export error: \(error)")
 		}
@@ -88,8 +90,8 @@ struct TasksModel: Codable{
 		return self.tasks.filter{ $0.name.localizedCaseInsensitiveContains(searchTerm) }
 	}
 
-	func exportTasks()->Bool{
-		let exportFilename = "tasks_export.txt"
+	func exportTasks(exportFilename: String = "tasks_export.txt")->Bool{
+		
 		let tasksAsText = self.tasks.enumerated().map{ index,element in "Task \(index + 1): \(element.name) - \(element.completed ? "[x]" : "[ ]") - created on \(element.createdOn.formatted(date: .long, time: .shortened))" }
 
 		do{
