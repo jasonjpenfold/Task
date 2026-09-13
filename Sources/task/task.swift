@@ -1,5 +1,6 @@
 // jjp 12-6-26
-// task -  Task Manager for  pi5 using swift
+// task -  Task Manager for Raspberry Pi 5 using swift
+
 import Foundation
 
 @main
